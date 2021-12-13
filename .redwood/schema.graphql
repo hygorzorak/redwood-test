@@ -1,0 +1,59 @@
+"""
+Use to check whether or not a user is authenticated and is associated
+with an optional set of roles.
+"""
+directive @requireAuth(roles: [String]) on FIELD_DEFINITION
+
+"""Use to skip authentication checks and allow public access."""
+directive @skipAuth on FIELD_DEFINITION
+
+input CreateVideoInput {
+  isPublic: Boolean
+  slug: String!
+  title: String!
+  url: String!
+}
+
+scalar Date
+
+scalar DateTime
+
+scalar JSON
+
+scalar JSONObject
+
+type Mutation {
+  createVideo(input: CreateVideoInput!): Video!
+  deleteVideo(id: Int!): Video!
+  updateVideo(id: Int!, input: UpdateVideoInput!): Video!
+}
+
+type Query {
+  redwood: Redwood
+  video(id: Int!): Video
+  videos: [Video]
+}
+
+type Redwood {
+  currentUser: JSON
+  prismaVersion: String
+  version: String
+}
+
+scalar Time
+
+input UpdateVideoInput {
+  id: Int!
+  isPublic: Boolean
+  slug: String!
+  title: String!
+  url: String!
+}
+
+type Video {
+  id: Int!
+  isPublic: Boolean
+  slug: String!
+  title: String!
+  url: String!
+}
