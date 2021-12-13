@@ -1,4 +1,5 @@
 # Redwood Test
+More details about the Framework: https://redwoodjs.com
 
 ### Setup
 ```terminal
